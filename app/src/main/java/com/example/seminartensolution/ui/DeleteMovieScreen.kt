@@ -14,11 +14,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.seminartensolution.R
 
 
 @Composable
@@ -35,7 +37,7 @@ fun DeleteMovieScreen() {
     ) {
 //label
         Text(
-            text = "Delete movie by ID:",
+            text = stringResource(R.string.delete_label),
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(bottom = 8.dp)
@@ -45,7 +47,7 @@ fun DeleteMovieScreen() {
         TextField(
             value = viewModel.movieId,
             onValueChange = { viewModel.movieId = it },
-            placeholder = { Text("Enter movie ID") },
+            placeholder = { Text(stringResource(R.string.delete_input_hint)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier
                 .fillMaxWidth()
@@ -58,7 +60,7 @@ fun DeleteMovieScreen() {
             colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Delete")
+            Text(text = stringResource(R.string.delete_button))
         }
 
     }

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">seminarTenSolution</string>
+    <string name="delete_button">Delete</string>
+    <string name="delete_input_hint">Enter movie ID</string>
+    <string name="delete_label">Delete movie by ID:</string>
 </resources>
