@@ -27,6 +27,9 @@ import com.example.seminartensolution.R
 fun DeleteMovieScreen() {
 
     val viewModel: MovieViewModel = viewModel()
+    val movieId = viewModel.movieId
+    val onMovieIdChange: (String) -> Unit = { viewModel.movieId = it }
+    val onDeleteClick: () -> Unit = { viewModel.deleteMovieById(movieId) }
 
     Column(
         modifier = Modifier
@@ -35,33 +38,49 @@ fun DeleteMovieScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-//label
-        Text(
-            text = stringResource(R.string.delete_label),
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 8.dp)
+        DeleteLabel()
+        DeleteInput(
+            movieId, onMovieIdChange
+        )
+        DeleteButton(
+            onDeleteClick
         )
 
-//input
-        TextField(
-            value = viewModel.movieId,
-            onValueChange = { viewModel.movieId = it },
-            placeholder = { Text(stringResource(R.string.delete_input_hint)) },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
-        )
+    }
+}
 
-//button
-        Button(
-            onClick = { viewModel.deleteMovieById(viewModel.movieId) },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(text = stringResource(R.string.delete_button))
-        }
 
+@Composable
+fun DeleteLabel() {
+    Text(
+        text = stringResource(R.string.delete_label),
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.padding(bottom = 8.dp)
+    )
+
+}
+
+@Composable
+fun DeleteInput(movieId: String, onMovieIdChange: (String) -> Unit) {
+    TextField(
+        value = movieId,
+        onValueChange = onMovieIdChange,
+        placeholder = { Text(stringResource(R.string.delete_input_hint)) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 8.dp)
+    )
+}
+
+@Composable
+fun DeleteButton(onDeleteClick: () -> Unit) {
+    Button(
+        onClick = onDeleteClick,
+        colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(text = stringResource(R.string.delete_button))
     }
 }
