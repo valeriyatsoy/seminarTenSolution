@@ -14,17 +14,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.seminartensolution.R
 
 
 @Composable
 fun DeleteMovieScreen() {
 
     val viewModel: MovieViewModel = viewModel()
+    val movieId = viewModel.movieId
+    val onMovieIdChange: (String) -> Unit = { viewModel.movieId = it }
+    val onDeleteClick: () -> Unit = { viewModel.deleteMovieById(movieId) }
 
     Column(
         modifier = Modifier
@@ -33,33 +38,49 @@ fun DeleteMovieScreen() {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-//label
-        Text(
-            text = "Delete movie by ID:",
-            fontSize = 18.sp,
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(bottom = 8.dp)
+        DeleteLabel()
+        DeleteInput(
+            movieId, onMovieIdChange
+        )
+        DeleteButton(
+            onDeleteClick
         )
 
-//input
-        TextField(
-            value = viewModel.movieId,
-            onValueChange = { viewModel.movieId = it },
-            placeholder = { Text("Enter movie ID") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 8.dp)
-        )
+    }
+}
 
-//button
-        Button(
-            onClick = { viewModel.deleteMovieById(viewModel.movieId) },
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(text = "Delete")
-        }
 
+@Composable
+fun DeleteLabel() {
+    Text(
+        text = stringResource(R.string.delete_label),
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold,
+        modifier = Modifier.padding(bottom = 8.dp)
+    )
+
+}
+
+@Composable
+fun DeleteInput(movieId: String, onMovieIdChange: (String) -> Unit) {
+    TextField(
+        value = movieId,
+        onValueChange = onMovieIdChange,
+        placeholder = { Text(stringResource(R.string.delete_input_hint)) },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 8.dp)
+    )
+}
+
+@Composable
+fun DeleteButton(onDeleteClick: () -> Unit) {
+    Button(
+        onClick = onDeleteClick,
+        colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        Text(text = stringResource(R.string.delete_button))
     }
 }
