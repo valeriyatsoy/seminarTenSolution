@@ -8,6 +8,8 @@ import com.example.seminartensolution.data.MovieRepository
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
+import com.example.seminartensolution.R
 import com.example.seminartensolution.data.MyResponse
 
 
@@ -37,8 +39,11 @@ class MovieViewModel : ViewModel() {
                     Log.d("DeleteResponseMessage: ", response.message)
                     deleteResponseState = DeleteResponseState.Success(response)
                 } catch (e: Exception ) {
-                    val message = e.message ?: "Unknown error"
-                    deleteResponseState = DeleteResponseState.Error(message)
+                    if (e.message != null) {
+                        deleteResponseState = DeleteResponseState.Error(e.message!!)
+                    } else {
+                        deleteResponseState = null
+                    }
                 }
 
             } else {
