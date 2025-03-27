@@ -8,11 +8,19 @@ import com.example.seminartensolution.data.MovieRepository
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.example.seminartensolution.data.MyResponse
 
 
 class MovieViewModel : ViewModel() {
 
+    sealed class DeleteResponseState {
+        data class Success(val myResponse: MyResponse) : DeleteResponseState()
+        data class Error(val errorMsg: String) : DeleteResponseState()
+    }
+
     var movieId by mutableStateOf<String>("")
+    var deleteResponseState by mutableStateOf<DeleteResponseState?>(null)
+        private set
 
     init {
 
@@ -24,12 +32,18 @@ class MovieViewModel : ViewModel() {
 
             val id = movieId.toIntOrNull()
             if (id != null) {
-                val response = repository.deleteMovieById(id)
-                Log.d("DeleteResponseMessage: ", response.message)
+                try {
+                    val response = repository.deleteMovieById(id)
+                    Log.d("DeleteResponseMessage: ", response.message)
+                    deleteResponseState = DeleteResponseState.Success(response)
+                } catch (e: Exception ) {
+                    val message = e.message ?: "Unknown error"
+                    deleteResponseState = DeleteResponseState.Error(message)
+                }
+
             } else {
                 Log.e("DeleteError", "Invalid movie ID")
             }
         }
     }
-
 }
