@@ -54,7 +54,7 @@ fun DeleteMovieScreen() {
 
 //button
         Button(
-            onClick = { viewModel.deleteMovieById() },
+            onClick = { viewModel.deleteMovieById(viewModel.movieId) },
             colors = ButtonDefaults.buttonColors(containerColor = Color.Gray),
             modifier = Modifier.fillMaxWidth()
         ) {

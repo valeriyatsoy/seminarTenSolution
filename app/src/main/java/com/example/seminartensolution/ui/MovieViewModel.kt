@@ -18,7 +18,7 @@ class MovieViewModel : ViewModel() {
 
     }
 
-    fun deleteMovieById() {
+    fun deleteMovieById(movieId: String) {
         viewModelScope.launch {
             val repository = MovieRepository()
 
