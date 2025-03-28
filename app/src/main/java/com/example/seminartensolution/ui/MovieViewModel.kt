@@ -18,10 +18,11 @@ class MovieViewModel : ViewModel() {
     sealed class DeleteResponseState {
         data class Success(val myResponse: MyResponse) : DeleteResponseState()
         data class Error(val errorMsg: String) : DeleteResponseState()
+        data object Initial : DeleteResponseState()
     }
 
     var movieId by mutableStateOf<String>("")
-    var deleteResponseState by mutableStateOf<DeleteResponseState?>(null)
+    var deleteResponseState by mutableStateOf<DeleteResponseState?>(DeleteResponseState.Initial)
         private set
 
     init {
@@ -49,6 +50,6 @@ class MovieViewModel : ViewModel() {
             } else {
                 Log.e("DeleteError", "Invalid movie ID")
             }
-        }
+        5}
     }
 }
