@@ -12,7 +12,7 @@ import androidx.compose.runtime.setValue
 
 class MovieViewModel : ViewModel() {
 
-    var movieId by mutableStateOf<String>("")
+    var movieIdInput by mutableStateOf<String>("")
 
     init {
 

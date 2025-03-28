@@ -27,8 +27,8 @@ import com.example.seminartensolution.R
 fun DeleteMovieScreen() {
 
     val viewModel: MovieViewModel = viewModel()
-    val movieId = viewModel.movieId
-    val onMovieIdChange: (String) -> Unit = { viewModel.movieId = it }
+    val movieId = viewModel.movieIdInput
+    val onMovieIdChange: (String) -> Unit = { viewModel.movieIdInput = it }
     val onDeleteClick: () -> Unit = { viewModel.deleteMovieById(movieId) }
 
     Column(
