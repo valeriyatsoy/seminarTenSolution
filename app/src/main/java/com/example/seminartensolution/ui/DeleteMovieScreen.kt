@@ -59,7 +59,8 @@ fun DeleteMovieScreen() {
             }
         }
 
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show()
+        if(message.isNotEmpty())
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
     Column(
