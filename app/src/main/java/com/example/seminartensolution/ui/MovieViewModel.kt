@@ -10,6 +10,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.res.stringResource
 import com.example.seminartensolution.R
+import com.example.seminartensolution.data.Movie
 import com.example.seminartensolution.data.MyResponse
 
 
@@ -24,6 +25,7 @@ class MovieViewModel : ViewModel() {
     var movieId by mutableStateOf<String>("")
     var deleteResponseState by mutableStateOf<DeleteResponseState?>(DeleteResponseState.Initial)
         private set
+    var newMovie by mutableStateOf<Movie?>(null)
 
     init {
 

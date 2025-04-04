@@ -4,4 +4,8 @@
     <string name="delete_input_hint">Enter movie ID</string>
     <string name="delete_label">Delete movie by ID:</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="create_movie_validation_empty">Please fill in all fields!</string>
+    <string name="create_movie_button">Create Movie</string>
+    <string name="production_year_input_hint">Production Year</string>
+    <string name="movie_name_input_hint">Movie Name</string>
 </resources>

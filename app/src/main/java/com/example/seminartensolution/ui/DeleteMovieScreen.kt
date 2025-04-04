@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.seminartensolution.R
-
+import com.example.seminartensolution.ui.Dimens
 
 @Composable
 fun DeleteMovieScreen() {
@@ -66,7 +66,7 @@ fun DeleteMovieScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(Dimens.MediumPadding),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -102,11 +102,10 @@ fun DeleteMovieScreen() {
 fun DeleteLabel() {
     Text(
         text = stringResource(R.string.delete_label),
-        fontSize = 18.sp,
+        fontSize = Dimens.MediumText,
         fontWeight = FontWeight.Bold,
         modifier = Modifier.padding(bottom = 8.dp)
     )
-
 }
 
 @Composable

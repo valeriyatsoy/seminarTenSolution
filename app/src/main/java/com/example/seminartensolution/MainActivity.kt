@@ -8,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.seminartensolution.ui.CreateNewMovie
 import com.example.seminartensolution.ui.DeleteMovieScreen
 import com.example.seminartensolution.ui.theme.SeminarTenSolutionTheme
 
@@ -18,10 +19,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SeminarTenSolutionTheme {
-                DeleteMovieScreen()
+                CreateNewMovie()
+            }
         }
     }
-}
 }
 
 @Composable
