@@ -52,6 +52,6 @@ class MovieViewModel : ViewModel() {
             } else {
                 Log.e("DeleteError", "Invalid movie ID")
             }
-        5}
+        }
     }
 }
